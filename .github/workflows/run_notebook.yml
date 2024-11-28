@@ -1,0 +1,17 @@
+name: Run Colab Notebook
+
+on:
+  schedule:
+    - cron: '0 12 * * *'  # Runs every hour. Modify this schedule as needed.
+
+jobs:
+  run-notebook:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    - name: Run Google Colab
+      uses: machine-learning-apps/colab-run@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        notebook_path: 'BRITAM_Data_Audit.ipynb'
